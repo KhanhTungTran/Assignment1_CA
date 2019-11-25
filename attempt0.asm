@@ -47,6 +47,7 @@
 	ori $a0, $a0, 0xd4
 	syscall
 	#(in qua trinh chay)
+	
 #	la $a0, arr	
 	lui $a0, 0x00001001
 	ori $a0, $a0, 0x0
