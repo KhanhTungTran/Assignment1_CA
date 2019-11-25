@@ -40,95 +40,95 @@
 	addi $a1, $0,  0	# low
 	addi $a2, $0,  49	# high
 	
-	# begin (in qua trinh chay):
-	addi $v0, $0, 4
-#	la $a0, begin
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0xd4
-	syscall
-	#(in qua trinh chay)
+#	# begin (in qua trinh chay):
+#	addi $v0, $0, 4
+##	la $a0, begin
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0xd4
+#	syscall
+#	#(in qua trinh chay)
 #	la $a0, arr	
 	lui $a0, 0x00001001
 	ori $a0, $a0, 0x0
 	jal Quicksort
 	
-	# In ket qua
-	addi $v0, $0, 4
-#	la $a0, ketqua
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0xc8
-	syscall
+#	# In ket qua
+#	addi $v0, $0, 4
+##	la $a0, ketqua
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0xc8
+#	syscall
 	
-	addi $t0, $0,  0
+#	addi $t0, $0,  0
 #	la $a1, arr
-	lui $a1, 0x00001001
-	ori $a1, $a1, 0x0
-printLoop:
-	lw $a0, 0($a1)
-	addi $v0, $0, 1
-	syscall	
-	
-	addi $v0, $0, 4
-#	la $a0, space
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0xd2
-	syscall
-	
-	addi $a1, $a1, 4
-	addi $t0, $t0, 1
-#	beq $t0, 50, exitProgram
-	addi $t7, $0, 50
-	beq $t0, $t7, exitProgram
-	j printLoop
-exitProgram:
+#	lui $a1, 0x00001001
+#	ori $a1, $a1, 0x0
+#printLoop:
+#	lw $a0, 0($a1)
+#	addi $v0, $0, 1
+#	syscall	
+#	
+#	addi $v0, $0, 4
+##	la $a0, space
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0xd2
+#	syscall
+#	
+#	addi $a1, $a1, 4
+#	addi $t0, $t0, 1
+##	beq $t0, 50, exitProgram
+#	addi $t7, $0, 50
+#	beq $t0, $t7, exitProgram
+#	j printLoop
+#exitProgram:
 	addi $v0, $0, 10
 	syscall	
 	
 # Than ham Quicksort($a0 = arr, &a1 = low, $a2 = high):
 Quicksort:
 
-#	(in qua trinh chay)
-#	move $t9, $a0
-	or $t9, $a0, 0
-	
-	addi $v0, $0, 4
-#	la $a0, low
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0xed
-	syscall
-	or $a0, $a1, $0
-	addi $v0, $0, 1
-	syscall	
-
-	addi $v0, $0, 4
-#	la $a0, high
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0xf4
-	syscall
-#	move $a0, $a2
-	or $a0, $a2, $0
-	addi $v0, $0, 1
-	syscall		
-	
-	addi $v0, $0, 4
-#	la $a0, pivot
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0xfe
-	syscall
-	sll $t8, $a2, 2
-	addu $t8, $t8, $t9
-	lw $a0, 0($t8)		# a0 = arr[high]
-	addi $v0, $0, 1
-	syscall
-		
-	addi $v0, $0, 4
-#	la $a0, endline
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0x115
-	syscall
-	
-	or $a0, $t9, $0
-#	(in qua trinh chay)	
+##	(in qua trinh chay)
+##	move $t9, $a0
+#	or $t9, $a0, 0
+#	
+#	addi $v0, $0, 4
+##	la $a0, low
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0xed
+#	syscall
+#	or $a0, $a1, $0
+#	addi $v0, $0, 1
+#	syscall	
+#
+#	addi $v0, $0, 4
+##	la $a0, high
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0xf4
+#	syscall
+##	move $a0, $a2
+#	or $a0, $a2, $0
+#	addi $v0, $0, 1
+#	syscall		
+#	
+#	addi $v0, $0, 4
+##	la $a0, pivot
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0xfe
+#	syscall
+#	sll $t8, $a2, 2
+#	addu $t8, $t8, $t9
+#	lw $a0, 0($t8)		# a0 = arr[high]
+#	addi $v0, $0, 1
+#	syscall
+#		
+#	addi $v0, $0, 4
+##	la $a0, endline
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0x115
+#	syscall
+#	
+#	or $a0, $t9, $0
+##	(in qua trinh chay)	
 	addi $sp, $sp, -4	# tao vung nho stack de luu gia tri thanh ghi tro ve.
 	sw $ra, 0($sp)		# vi trong ham Quicksort co goi cac ham khac.	
 #	bge $a1, $a2, exitQuicksort	# neu low >= high, thoat khoi ham.
@@ -137,29 +137,29 @@ Quicksort:
 	
 	jal partition		# goi ham partition de sap xep arr[high] vao dung vi tri (pi).
 
-#	(in qua trinh chay)		
-	or $t9, $a0, $0
-	or $t8, $v0, $0
-	
-	addi $v0, $0, 4
-#	la $a0, pi
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0x117
-	syscall
-	
-	or $a0, $t8, $0
-	addi $v0, $0, 1
-	syscall
-	
-	addi $v0, $0, 4
-#	la $a0, endline
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0x115
-	syscall
-	
-	or $v0, $t8, $0
-	or $a0, $t9, $0
-#	(in qua trinh chay)	
+##	(in qua trinh chay)		
+#	or $t9, $a0, $0
+#	or $t8, $v0, $0
+#	
+#	addi $v0, $0, 4
+##	la $a0, pi
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0x117
+#	syscall
+#	
+#	or $a0, $t8, $0
+#	addi $v0, $0, 1
+#	syscall
+#	
+#	addi $v0, $0, 4
+##	la $a0, endline
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0x115
+#	syscall
+#	
+#	or $v0, $t8, $0
+#	or $a0, $t9, $0
+##	(in qua trinh chay)	
 	# Luu cac gia tri vao stack vi trong qua trinh goi ham long nhau, cac ham con se lam thay doi cac gia tri nay
 	addi $sp, $sp, -8
 	sw $v0, 4($sp)		# $v0 = pi
@@ -181,18 +181,18 @@ Quicksort:
 	jr $ra
 	
 exitQuicksort:
-#	(in qua trinh chay)
-	or $t9, $a0, $0
-	or $t8, $v0, $0
-	addi $v0, $0,  4
-#	la $a0, notFound
-	lui $a0, 0x00001001
-	ori $a0, $a0, 0x129
-	
-	syscall
-	or $v0, $t8, $0
-	or $a0, $t9, $0
-#	(in qua trinh chay)	
+##	(in qua trinh chay)
+#	or $t9, $a0, $0
+#	or $t8, $v0, $0
+#	addi $v0, $0,  4
+##	la $a0, notFound
+#	lui $a0, 0x00001001
+#	ori $a0, $a0, 0x129
+#	
+#	syscall
+#	or $v0, $t8, $0
+#	or $a0, $t9, $0
+##	(in qua trinh chay)	
 	addi $sp, $sp, 4
 	jr $ra
 	
